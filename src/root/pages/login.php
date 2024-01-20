@@ -48,21 +48,34 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Pixel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style/index.css">
+    <link rel="stylesheet" href="../style/login.css">
 </head>
 <body>
-    <div class="login">
-        <h2>Inloggen</h2>
-        <form method="post">
-            <label for="email">Email</label>
-            <input type="text" name="email" required>
-            <label for="password">Wachtwoord</label>
-            <input type="password" name="password" required>
-            <button type="submit">Inloggen</button>
-        </form>
-
-        <div class="links">
-            <p>Nog geen account? <a href="register.php">Registreren</a></p>
+    <main>
+        <a href="../index.html">
+            <h1 class="logo">Pixel</h1>
+        </a>
+        <div class="login">
+            <h1>Dashboard Log in</h1>
+            <form method="post">
+                <div class="flds">
+                    <div class="fld">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" required>
+                    </div>
+                    <div class="fld">
+                        <label for="password">Wachtwoord</label>
+                        <input type="password" name="password" required>
+                    </div>
+                </div>
+                <button type="submit">Log In</button>
+            </form>
+            <div class="links">
+                <p>Nog geen account? <a href="register.php">Registreren</a></p>
+                <a href="../index.html">Terug naar Home</a>
+            </div>
         </div>
-    </div>
+    </main>
 </body>
 </html>
