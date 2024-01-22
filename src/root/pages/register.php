@@ -10,20 +10,64 @@ error_reporting(E_ALL);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["name"];
     $password = $_POST["password"];
+    $password2 = $_POST["password2"];
     $email = $_POST["email"];
+    $date = $_POST["date"];
 
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    $stmt = $conn->prepare("INSERT INTO login (naam, wachtwoord, email) VALUES (?, ?, ?)");
-    $stmt->bind_param('sss', $username, $hashed_password, $email);
-
-    if ($stmt->execute()) {
-        echo "Registratie succesvol!";
+    if (empty($email) || empty($username)) {
+        echo "Vul zowel e-mail als gebruikersnaam in.";
+    } elseif (empty($password) || empty($password2)) {
+        echo "Vul zowel wachtwoord als wachtwoord herhalen in.";
+    } elseif ($password != $password2) {
+        echo "Wachtwoorden komen niet overeen.";
+    } elseif (empty($date)) {
+        echo "Vul een geboortedatum in.";
+    } elseif (strlen($username) > 15) {
+        echo "Gebruikersnaam mag maximaal 15 karakters bevatten.";
+    } elseif (strlen($password) > 255) {
+        echo "Wachtwoord mag maximaal 255 karakters bevatten.";
+    } elseif (strlen($email) > 50) {
+        echo "E-mail mag maximaal 50 karakters bevatten.";
     } else {
-        echo "Fout bij registratie: " . $stmt->error;
+        $birthdate = new DateTime($date);
+        $today = new DateTime();
+        $age = $today->diff($birthdate)->y;
+
+        if ($age < 18) {
+            echo "Registratie mislukt. Je moet minstens 18 jaar oud zijn.";
+        } else {
+            $checkQuery = "SELECT * FROM login WHERE email=? OR naam=?";
+            $checkStmt = $conn->prepare($checkQuery);
+            $checkStmt->bind_param('ss', $email, $username);
+            $checkStmt->execute();
+            $checkResult = $checkStmt->get_result();
+
+            if ($checkResult->num_rows > 0) {
+                $row = $checkResult->fetch_assoc();
+                if ($row['email'] == $email) {
+                    echo "Registratie mislukt. Deze e-mail is al in gebruik.";
+                } elseif ($row['naam'] == $username) {
+                    echo "Registratie mislukt. Deze gebruikersnaam is al in gebruik.";
+                }
+            } else {
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                $insertQuery = "INSERT INTO login (naam, wachtwoord, email, geboortedatum) VALUES (?, ?, ?, ?)";
+                $stmt = $conn->prepare($insertQuery);
+                $stmt->bind_param('ssss', $username, $hashed_password, $email, $date);
+
+                if ($stmt->execute()) {
+                    header("Location: login.php");
+                    exit();
+                } else {
+                    echo "Fout bij registratie: " . $stmt->error;
+                }
+
+                $stmt->close();
+            }
+            $checkStmt->close();
+        }
     }
 
-    $stmt->close();
     $conn->close();
 }
 
@@ -54,15 +98,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="name">Naam</label>
                         <input type="text" name="name" required>
                     </div>
-                    
+
+                    <div class="fld">
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email" required>
+                    </div>
+
                     <div class="fld">
                         <label for="password">Wachtwoord</label>
                         <input type="password" name="password" required>
                     </div>
 
                     <div class="fld">
-                        <label for="email">E-mail</label>
-                        <input type="email" name="email" required>
+                        <label for="password2">Wachtwoord herhalen</label>
+                        <input type="password" name="password2" required>
+                    </div>
+
+                    <div class="fld">
+                        <label for="date">Geboortedatum</label>
+                        <input type="date" name="date" id="date" required>
                     </div>
                 </div>
 
