@@ -31,26 +31,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | Pixel</title>
+    <title>Account aanmaken! | Pixel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style/index.css">
+    <link rel="stylesheet" href="../style/register.css">
 </head>
 <body>
-    <div class="register">
-    <h2>Registratie</h2>
-        <form method="post">
-            <label for="name">Naam</label>
-            <input type="text" name="name" required>
-            <label for="password">Wachtwoord</label>
-            <input type="password" name="password" required>
-            <label for="email">E-mail</label>
-            <input type="email" name="email" required>
-            <button type="submit">Registreren</button>
-        </form>
+    <main>
+        <a href="../index.html">
+            <h1 class="logo">Pixel</h1>
+        </a>
+
+        <div class="register">
+            <h1>Maak een account aan!</h1>
+            <form method="post">
+                <div class="flds">
+                    <div class="fld">
+                        <label for="name">Naam</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    
+                    <div class="fld">
+                        <label for="password">Wachtwoord</label>
+                        <input type="password" name="password" required>
+                    </div>
+
+                    <div class="fld">
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email" required>
+                    </div>
+                </div>
+
+                <button type="submit">Registreren</button>
+            </form>
+        </div>
     
         <div class="links">
-            <p><a href="login.php" class="inlog">Inloggen</a></p>
-            <p><a href="index.php" class="website">Terug naar Website</a></p>
+        <p>Terug naar: <a href="login.php">Inloggen</a></p>
+        <a href="../index.html">Home</a>
         </div>
-    </div>
+    </main>
 </body>
 </html>
