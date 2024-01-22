@@ -1,31 +1,35 @@
 <?php
 
+include '../conf/dbconn.php';
+session_start();
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
-$conn = mysqli_connect('localhost','root','','foto-upload');
-
-if ($conn->connect_error) {
-    die("Fout bij de verbinding met de database: " . $conn->connect_error);
-}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["name"];
     $password = $_POST["password"];
     $email = $_POST["email"];
 
-    $sql = "INSERT INTO login (naam, wachtwoord, email) VALUES ('$username', '$password', '$email')";
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    if ($conn->query($sql) === TRUE) {
+    $stmt = $conn->prepare("INSERT INTO login (naam, wachtwoord, email) VALUES (?, ?, ?)");
+    $stmt->bind_param('sss', $username, $hashed_password, $email);
+
+    if ($stmt->execute()) {
         echo "Registratie succesvol!";
     } else {
-        echo "Fout bij registratie: " . $conn->error;
+        echo "Fout bij registratie: " . $stmt->error;
     }
+
+    $stmt->close();
+    $conn->close();
 }
 
-
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>

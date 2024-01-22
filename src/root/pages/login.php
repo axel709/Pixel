@@ -1,42 +1,49 @@
 <?php
+include '../conf/dbconn.php';
+include '../conf/conf.php';
+
 session_start();
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
-$conn = mysqli_connect('localhost','root','','foto-upload');
- 
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
  
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $input_email = $_POST['email'];
     $input_password = $_POST['password'];
- 
-    $query = "SELECT * FROM login WHERE email='$input_email' AND wachtwoord='$input_password'";
-    $result = $conn->query($query);
- 
+
+    $query = "SELECT * FROM login WHERE email=?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('s', $input_email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
-        $_SESSION['name'] = $row['name'];
-        $_SESSION['id'] = $row['id'];
-    
-        if ($row['email'] == "admin@gmail.com") {
+
+        if (password_verify($input_password, $row['wachtwoord'])) {
+            $_SESSION['name'] = $row['name']; // ehh?
+            $_SESSION['id'] = $row['id']; 
             $_SESSION['email'] = $row['email'];
-            header("Location: admin.php");
-        } else if ($row['email'] == $input_email) {
-            $_SESSION['email'] = $row['email'];
-            header("Location: index.php");
+
+            if ($row['email'] == ADMIN_EMAIL) {
+                $_SESSION['email'] = $row['email'];
+                header("Location: admin.php");
+            } else if ($row['email'] == $input_email) {
+                $_SESSION['email'] = $row['email'];
+                session_regenerate_id(true);
+                header("Location: index.php");
+            }
         } else {
             echo "Login failed. Please check your username and password.";
         }
     } else {
         echo "Login failed. Please check your username and password.";
     }
+
+    $stmt->close();
 }
- 
+
 $conn->close();
 ?>
 
