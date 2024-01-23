@@ -67,8 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     
         <div class="links">
-        <p>Terug naar: <a href="login.php">Inloggen</a></p>
-        <a href="../index.html">Home</a>
+        <p>Ik heb al een account: <a href="login.php">Inloggen</a></p>
+        <a href="../index.html">Terug naar Home</a>
         </div>
     </main>
 </body>

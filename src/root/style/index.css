@@ -5,9 +5,10 @@
 /*Variabelen*/
 :root {
     --font-logo: "Roboto", sans-serif;
-    --font-txt: "Fira Sans";
+    --font-txt: "Fira Sans"; /*Weight: 400, 800*/
 
-    --color-main: hsl(120, 48%, 36%);
+    /*--color-main: #228B22;*/
+    --color-main: #768948;
 }
 
 /*CSS Reset*/
@@ -22,7 +23,16 @@ a {
     text-decoration: none;
 }
 
+li {
+    list-style-type: none;
+}
+
 /*main styling*/
+.wrapper {
+    margin-inline: auto;
+    padding: 2em;
+    max-width: 1400px;
+}
 
 /*Logo styling*/
 .logo {
@@ -31,6 +41,7 @@ a {
     color: var(--color-main);
     position: relative;
     display: inline-block;
+    width: fit-content;
 }
 
 .logo::before {
@@ -38,7 +49,42 @@ a {
     width: 8px;
     height: 8px;
     position: absolute;
-    right: -10px;
     bottom: 12px;
+    right: -10px;
     background-color: var(--color-main);
+}
+
+/*Nav Styling*/
+.con-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.con-nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    font-family: var(--font-txt);
+    color: hsla(0, 0%, 100%, 0.7);
+    font-size: 1.2rem;
+}
+
+.btn {
+    display: block;
+    width: fit-content;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-main);
+    font-family: var(--font-txt);
+    color: #fff;
+    transition: all 100ms ease;
+}
+
+/*Animatie*/
+.btn:hover {
+    scale: 1.1;
 }
