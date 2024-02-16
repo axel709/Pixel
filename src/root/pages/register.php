@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO login (naam, wachtwoord, email, dob) VALUES ('$username', '$password', '$email', '$dob')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "Registratie succesvol!";
+            header('Location: login.php');
         } else {
             echo "Fout bij registratie: " . $conn->error;
         }
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         <div class="links">
             <p><a href="login.php" class="inlog">Inloggen</a></p>
-            <p><a href="index.php" class="website">Terug naar Website</a></p>
+            <p><a href="../index.html" class="website">Terug naar Website</a></p>
         </div>
     </div>
 

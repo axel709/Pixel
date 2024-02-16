@@ -62,8 +62,8 @@ $conn->close();
         </form>
 
         <div class="links">
-            <p>Nog geen account? <a href="../register/register.php">Registreren</a></p>
-            <a href="../index.php">Terug naar Website</a>
+            <p>Nog geen account? <a href="./register.php">Registreren</a></p>
+            <a href="../index.html">Terug naar Website</a>
         </div>
     </div>
 </body>
