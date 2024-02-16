@@ -1,133 +1,98 @@
 <?php
-
-include '../conf/dbconn.php';
-session_start();
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+$conn = mysqli_connect('localhost', 'root', '', 'foto-upload');
+
+if ($conn->connect_error) {
+    die("Fout bij de verbinding met de database: " . $conn->connect_error);
+}
+
+function userExists($conn, $username, $email) {
+    $sql = "SELECT * FROM login WHERE naam = '$username' OR email = '$email'";
+    $result = $conn->query($sql);
+    return $result->num_rows > 0;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["name"];
     $password = $_POST["password"];
-    $password2 = $_POST["password2"];
+    $repeatPassword = $_POST["repeat_password"];
     $email = $_POST["email"];
-    $date = $_POST["date"];
+    $dob = $_POST["dob"];
 
-    if (empty($email) || empty($username)) {
-        echo "Vul zowel e-mail als gebruikersnaam in.";
-    } elseif (empty($password) || empty($password2)) {
-        echo "Vul zowel wachtwoord als wachtwoord herhalen in.";
-    } elseif ($password != $password2) {
-        echo "Wachtwoorden komen niet overeen.";
-    } elseif (empty($date)) {
-        echo "Vul een geboortedatum in.";
-    } elseif (strlen($username) > 15) {
-        echo "Gebruikersnaam mag maximaal 15 karakters bevatten.";
-    } elseif (strlen($password) > 255) {
-        echo "Wachtwoord mag maximaal 255 karakters bevatten.";
-    } elseif (strlen($email) > 50) {
-        echo "E-mail mag maximaal 50 karakters bevatten.";
+    $today = new DateTime();
+    $birthdate = new DateTime($dob);
+    $age = $birthdate->diff($today)->y;
+
+    if ($age < 18) {
+        echo "Je moet minimaal 18 jaar oud zijn om een account te kunnen maken!";
+    } elseif ($password != $repeatPassword) {
+        echo "Wachtwoorden komen niet overeen!";
+    } elseif (strlen($password) < 8) {
+        echo "Wachtwoord moet minimaal 8 tekens lang zijn!";
+    } elseif (userExists($conn, $username, $email)) {
+        echo "Deze gebruikersnaam of e-mail is al in gebruik!";
     } else {
-        $birthdate = new DateTime($date);
-        $today = new DateTime();
-        $age = $today->diff($birthdate)->y;
+        $sql = "INSERT INTO login (naam, wachtwoord, email, dob) VALUES ('$username', '$password', '$email', '$dob')";
 
-        if ($age < 18) {
-            echo "Registratie mislukt. Je moet minstens 18 jaar oud zijn.";
+        if ($conn->query($sql) === TRUE) {
+            echo "Registratie succesvol!";
         } else {
-            $checkQuery = "SELECT * FROM login WHERE email=? OR naam=?";
-            $checkStmt = $conn->prepare($checkQuery);
-            $checkStmt->bind_param('ss', $email, $username);
-            $checkStmt->execute();
-            $checkResult = $checkStmt->get_result();
-
-            if ($checkResult->num_rows > 0) {
-                $row = $checkResult->fetch_assoc();
-                if ($row['email'] == $email) {
-                    echo "Registratie mislukt. Deze e-mail is al in gebruik.";
-                } elseif ($row['naam'] == $username) {
-                    echo "Registratie mislukt. Deze gebruikersnaam is al in gebruik.";
-                }
-            } else {
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                $insertQuery = "INSERT INTO login (naam, wachtwoord, email, geboortedatum) VALUES (?, ?, ?, ?)";
-                $stmt = $conn->prepare($insertQuery);
-                $stmt->bind_param('ssss', $username, $hashed_password, $email, $date);
-
-                if ($stmt->execute()) {
-                    header("Location: login.php");
-                    exit();
-                } else {
-                    echo "Fout bij registratie: " . $stmt->error;
-                }
-
-                $stmt->close();
-            }
-            $checkStmt->close();
+            echo "Fout bij registratie: " . $conn->error;
         }
     }
-
-    $conn->close();
 }
-
 ?>
 
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account aanmaken! | Pixel</title>
+    <title>Register | Pixel</title>
+    <link rel="stylesheet" href="register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../style/index.css">
-    <link rel="stylesheet" href="../style/register.css">
 </head>
 <body>
-    <main>
-        <a href="../index.html">
-            <h1 class="logo">Pixel</h1>
-        </a>
-
-        <div class="register">
-            <h1>Maak een account aan!</h1>
-            <form method="post">
-                <div class="flds">
-                    <div class="fld">
-                        <label for="name">Naam</label>
-                        <input type="text" name="name" required>
-                    </div>
-
-                    <div class="fld">
-                        <label for="email">E-mail</label>
-                        <input type="email" name="email" required>
-                    </div>
-
-                    <div class="fld">
-                        <label for="password">Wachtwoord</label>
-                        <input type="password" name="password" required>
-                    </div>
-
-                    <div class="fld">
-                        <label for="password2">Wachtwoord herhalen</label>
-                        <input type="password" name="password2" required>
-                    </div>
-
-                    <div class="fld">
-                        <label for="date">Geboortedatum</label>
-                        <input type="date" name="date" id="date" required>
-                    </div>
-                </div>
-
-                <button type="submit">Registreren</button>
-            </form>
-        </div>
-    
+    <div class="register">
+        <h2>Registratie</h2>
+        <form method="post">
+            <label for="name">Naam</label>
+            <input type="text" name="name" required>
+            <label for="email">E-mail</label>
+            <input type="email" name="email" required>
+            <label for="dob">Geboortedatum</label>
+            <input type="date" name="dob" id="dob" required>
+            <label for="password">Wachtwoord</label>
+            <input type="password" name="password" id="password" required>
+            <label for="repeat_password">Herhaal Wachtwoord</label>
+            <input type="password" name="repeat_password" id="repeat_password" required>
+            <button type="submit">Registreren</button>
+        </form>
+        
         <div class="links">
-        <p>Ik heb al een account: <a href="login.php">Inloggen</a></p>
-        <a href="../index.html">Terug naar Home</a>
+            <p><a href="login.php" class="inlog">Inloggen</a></p>
+            <p><a href="index.php" class="website">Terug naar Website</a></p>
         </div>
-    </main>
+    </div>
+
+    <script>
+        const password = document.getElementById("password");
+        const repeatPassword = document.getElementById("repeat_password");
+
+        function validatePassword() {
+            if (password.value !== repeatPassword.value) {
+                repeatPassword.setCustomValidity("Wachtwoorden komen niet overeen!");
+            } else {
+                repeatPassword.setCustomValidity("");
+            }
+        }
+
+        password.addEventListener("input", validatePassword);
+        repeatPassword.addEventListener("input", validatePassword);
+    </script>
 </body>
 </html>
