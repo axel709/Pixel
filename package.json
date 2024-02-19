@@ -1,0 +1,20 @@
+{
+  "name": "pixel",
+  "version": "1.0.0",
+  "description": "Dit is de beroepsopdracht van Maarten, Axel en Amar.\r Wij moesten kiezen tussen een paar concepten die wij \r mogen uitwerken en er een applicatie van kunnen maken",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.71.0"
+  }
+}
