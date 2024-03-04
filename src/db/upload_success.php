@@ -10,7 +10,7 @@
     <div class="container">
         <h1>Upload Success!</h1>
         <p>Your file has been successfully uploaded.</p>
-        <a href="index.php">Go back to upload page</a>
+        <a href="../pages/foto-upload.php">Go back to upload page</a>
     </div>
 </body>
 </html>

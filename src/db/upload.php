@@ -1,11 +1,11 @@
 <?php 
 // Include the database configuration file 
-include_once 'dbConfig.php'; 
+include_once '../conf/dbconn.php'; 
  
 $statusMsg = ''; 
  
 // File upload directory 
-$targetDir = "uploads/"; 
+$targetDir = "../db/uploads/"; 
 
 if(isset($_POST["submit"])){ 
     if(!empty($_FILES["file"]["name"])){ 
@@ -26,7 +26,7 @@ if(isset($_POST["submit"])){
                 if($insert){ 
                     $statusMsg = "The file ".$fileName. " has been uploaded successfully."; 
                     // Redirect to upload_success.php after successful upload
-                    header("Location: upload_success.php");
+                    header("Location: ../db/upload_success.php");
                     exit();
                 }else{ 
                     $statusMsg = "File upload failed, please try again."; 

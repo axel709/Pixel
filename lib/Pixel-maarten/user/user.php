@@ -18,7 +18,7 @@ $message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['directoryName'])) {
     $dirName = trim($_POST['directoryName']);
-    $userDir = __DIR__ . "/../foto upload/uploads/Maarten" . $gebruikersnaam . "/" . $dirName;
+    $userDir = __DIR__ . "/../foto upload/uploads" . $gebruikersnaam . "/" . $dirName;
 
     if (!file_exists($userDir)) {
         mkdir($userDir, 0777, true);

@@ -1,5 +1,5 @@
 <?php
-include_once 'upload.php';
+include_once '../db/upload.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +10,11 @@ include_once 'upload.php';
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav>
+        <a href="feed.php">feed</a>
+        <a href="foto-upload.php">Foto uploaden</a>
+        <a href="user.php">User pagina</a>
+    </nav>
     <div class="container">
         <div class="upfrm">
             <?php if(!empty($statusMsg)){ ?>
@@ -29,14 +34,14 @@ include_once 'upload.php';
             <div class="gcon">
                 <h2>Uploaded Images</h2>
                 <?php
-                include_once 'dbConfig.php';
+                include_once '../conf/dbconn.php';
 
                 // Get images from the database
                 $query = $db->query("SELECT * FROM images ORDER BY uploaded_on DESC");
 
                 if ($query->num_rows > 0) {
                     while ($row = $query->fetch_assoc()) {
-                        $imageURL = 'uploads/' . $row["file_name"];
+                        $imageURL = '../db/uploads/' . $row["file_name"];
                         ?>
                         <div class="image-container">
                             <img src="<?php echo $imageURL; ?>" alt="" />
