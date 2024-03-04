@@ -13,6 +13,7 @@ include_once '../conf/dbconn.php';
         <a href="feed.php">feed</a>
         <a href="foto-upload.php">Foto uploaden</a>
         <a href="user.php">User pagina</a>
+        <a href="../index.php">Log in</a>
     </nav>
     <h1>Feed Pagina</h1>
     <?php
@@ -23,7 +24,7 @@ include_once '../conf/dbconn.php';
                 $imageURL = '../db/uploads/' . $row["file_name"];
                 ?>
                 <div class="image-container">
-                    <img src="<?php echo $imageURL; ?>" alt="" />
+                    <img src="<?php echo $imageURL; ?>" width="200" />
                     <p>Gepost op: <?php echo $row["uploaded_on"] ?></p>
                     <p class="image-description">description: <?php echo $row["beschrijving"]; ?></p>
                 </div>

@@ -68,6 +68,7 @@ $userDirectories = scanUserDirectories($userBaseDir);
         <a href="feed.php">feed</a>
         <a href="foto-upload.php">Foto uploaden</a>
         <a href="user.php">User pagina</a>
+        <a href="../index.php">Log in</a>
     </nav>
     <div class="profile-container">
         <h2>Welkom op je profielpagina</h2>

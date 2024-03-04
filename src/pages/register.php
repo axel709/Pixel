@@ -69,34 +69,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <header>
         <div class="container">
-            <h1>Maak een account aan!</h1>
-            <form method="post">
-                <div class="fld-con">
-                    <div class="fld">
-                        <label for="name">Naam</label>
-                        <input type="text" name="name" required>
+            <div class="links">
+                <img src="../img/pixel-logo.png" width="50">
+                <a class="feed-btn" href="feed.php">Feed</a>
+            </div>
+            <div class="main">
+                <h1>Maak een account aan!</h1>
+                <form method="post">
+                    <div class="fld-con">
+                        <div class="fld">
+                            <label for="name">Naam</label>
+                            <input type="text" name="name" required placeholder="Pieter Jan">
+                        </div>
+                        <div class="fld">
+                            <label for="email">E-mail</label>
+                            <input type="email" name="email" required placeholder="Pieter@mail.com">
+                        </div>
+                        <div class="fld">
+                            <label for="dob">Geboortedatum</label>
+                            <input type="date" name="dob" id="dob" required>
+                        </div>
+                        <div class="fld">
+                            <label for="password">Wachtwoord</label>
+                            <input type="password" name="password" id="password" required>
+                        </div>
+                        <div class="fld">
+                            <label for="repeat_password">Herhaal Wachtwoord</label>
+                            <input type="password" name="repeat_password" id="repeat_password" required>
+                        </div>
                     </div>
-                    <div class="fld">
-                        <label for="email">E-mail</label>
-                        <input type="email" name="email" required>
-                    </div>
-                    <div class="fld">
-                        <label for="dob">Geboortedatum</label>
-                        <input type="date" name="dob" id="dob" required>
-                    </div>
-                    <div class="fld">
-                        <label for="password">Wachtwoord</label>
-                        <input type="password" name="password" id="password" required>
-                    </div>
-                    <div class="fld">
-                        <label for="repeat_password">Herhaal Wachtwoord</label>
-                        <input type="password" name="repeat_password" id="repeat_password" required>
-                    </div>
-                </div>
-
-                <button type="submit">Registreer</button>
-            </form>
-            <p>Heeft u al een account? <a href="../index.php">Log in!</a></p>
+                    <button type="submit">Registreer</button>
+                </form>
+                <p>Heeft u al een account? <a href="../index.php">Log in!</a></p>
+            </div>
         </div>
         <div class="con-img">
             <img src="../img/pixel-logo.png" alt="logo pixel" width="500">

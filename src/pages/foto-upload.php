@@ -14,6 +14,7 @@ include_once '../db/upload.php';
         <a href="feed.php">feed</a>
         <a href="foto-upload.php">Foto uploaden</a>
         <a href="user.php">User pagina</a>
+        <a href="../index.php">Log in</a>
     </nav>
     <div class="container">
         <div class="upfrm">
@@ -28,34 +29,6 @@ include_once '../db/upload.php';
                 <textarea name="description"></textarea>
                 <input type="submit" name="submit" value="Upload">
             </form>
-        </div>
-
-        <div class="gallery">
-            <div class="gcon">
-                <h2>Uploaded Images</h2>
-                <?php
-                include_once '../conf/dbconn.php';
-
-                // Get images from the database
-                $query = $db->query("SELECT * FROM images ORDER BY uploaded_on DESC");
-
-                if ($query->num_rows > 0) {
-                    while ($row = $query->fetch_assoc()) {
-                        $imageURL = '../db/uploads/' . $row["file_name"];
-                        ?>
-                        <div class="image-container">
-                            <img src="<?php echo $imageURL; ?>" alt="" />
-                            <p class="image-description"><?php echo $row["beschrijving"]; ?></p>
-                        </div>
-                        <?php
-                    }
-                }else{
-                    ?>
-                    <p>No image(s) found...</p>
-                    <?php
-                }
-                ?>
-            </div>
         </div>
     </div>
 </body>

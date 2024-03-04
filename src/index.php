@@ -53,22 +53,27 @@ $conn->close();
 <body>    
     <header>
         <div class="container">
-            <h1>Log in om uw foto's te zien!</h1>
-            <form method="post">
-                <div class="fld-con">
-                    <div class="fld">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" required>
+            <div class="links">
+                <img src="./img/pixel-logo.png" width="50">
+                <a class="feed-btn" href="./pages/feed.php">Feed</a>
+            </div>
+            <div class="main">
+                <h1>Log in om uw foto's te zien!</h1>
+                <form method="post">
+                    <div class="fld-con">
+                        <div class="fld">
+                            <label for="email">Email</label>
+                            <input type="text" name="email" required>
+                        </div>
+                        <div class="fld">
+                            <label for="password">Wachtwoord</label>
+                            <input type="password" name="password" required>
+                        </div>
                     </div>
-                    <div class="fld">
-                        <label for="password">Wachtwoord</label>
-                        <input type="password" name="password" required>
-                    </div>
-                </div>
-
-                <button type="submit">Inloggen</button>
-            </form>
-            <p>Geen account? <a href="./pages/register.php">Registreer nu!</a></p>
+                    <button type="submit">Inloggen</button>
+                </form>
+                <p>Geen account? <a href="./pages/register.php">Registreer nu!</a></p>
+            </div>
         </div>
         <div class="con-img">
             <img src="./img/pixel-logo.png" alt="logo pixel" width="500">
