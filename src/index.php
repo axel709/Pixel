@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: admin.php");
         } else if ($row['email'] == $input_email) { //login gelukt als user
             $_SESSION['email'] = $row['email'];
-            header("Location: index.php");
+            header("Location: ./pages/feed.php");
         } else {
             echo "Login failed. Please check your username and password.";
         }
@@ -55,7 +55,6 @@ $conn->close();
         <div class="container">
             <div class="links">
                 <img src="./img/pixel-logo.png" width="50">
-                <a class="feed-btn" href="./pages/feed.php">Feed</a>
             </div>
             <div class="main">
                 <h1>Log in om uw foto's te zien!</h1>

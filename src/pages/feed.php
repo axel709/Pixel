@@ -13,7 +13,6 @@ include_once '../conf/dbconn.php';
         <a href="feed.php">feed</a>
         <a href="foto-upload.php">Foto uploaden</a>
         <a href="user.php">User pagina</a>
-        <a href="../index.php">Log in</a>
     </nav>
     <h1>Feed Pagina</h1>
     <?php

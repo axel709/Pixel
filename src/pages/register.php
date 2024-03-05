@@ -10,7 +10,7 @@ if ($conn->connect_error) {
 }
 
 function userExists($conn, $username, $email) {
-    $sql = "SELECT * FROM login WHERE naam = '$username' OR email = '$email'";
+    $sql = "SELECT * FROM login WHERE name = '$username' OR email = '$email'";
     $result = $conn->query($sql);
     return $result->num_rows > 0;
 }
@@ -19,7 +19,7 @@ function createUserFolder($username) {
     $folderPath = __DIR__ . '/../foto upload/uploads/' . $username; 
     if (!file_exists($folderPath)) {
         mkdir($folderPath, 0777, true);
-        header("Location: ./user.php");
+        header("Location: ./feed.php");
     }
 }
 
@@ -43,10 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (userExists($conn, $username, $email)) {
         echo "Deze gebruikersnaam of e-mail is al in gebruik!";
     } else {
-        $sql = "INSERT INTO login (naam, wachtwoord, email, dob) VALUES ('$username', '$password', '$email', '$dob')";
+        $sql = "INSERT INTO login (name, wachtwoord, email, dob) VALUES ('$username', '$password', '$email', '$dob')";
 
         if ($conn->query($sql) === TRUE) {
-            header("Location: ./user.php");
+            header("Location: ./feed.php");
             createUserFolder($username);
         } else {
             echo "Fout bij registratie: " . $conn->error;
@@ -71,7 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container">
             <div class="links">
                 <img src="../img/pixel-logo.png" width="50">
-                <a class="feed-btn" href="feed.php">Feed</a>
             </div>
             <div class="main">
                 <h1>Maak een account aan!</h1>
