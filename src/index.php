@@ -5,43 +5,45 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$conn = mysqli_connect('localhost','root','','foto-upload');
- 
+$conn = mysqli_connect('localhost', 'root', '', 'foto-upload');
+
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
- 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $input_email = $_POST['email'];
+    $input_email_or_username = $_POST['email_or_username'];
     $input_password = $_POST['password'];
- 
-    $query = "SELECT * FROM login WHERE email='$input_email' AND wachtwoord='$input_password'";
+
+    $query = "SELECT * FROM login WHERE (email='$input_email_or_username' OR name='$input_email_or_username') AND wachtwoord='$input_password'";
     $result = $conn->query($query);
- 
+
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
         $_SESSION['name'] = $row['name'];
         $_SESSION['id'] = $row['id'];
-    
+
         if ($row['email'] == "admin@gmail.com") { //login gelukt als admin
             $_SESSION['email'] = $row['email'];
             header("Location: admin.php");
-        } else if ($row['email'] == $input_email) { //login gelukt als user
+        } else if ($row['email'] == $input_email_or_username || $row['name'] == $input_email_or_username) { //login gelukt als user
             $_SESSION['email'] = $row['email'];
             header("Location: ./pages/feed.php");
         } else {
-            echo "Login failed. Please check your username and password.";
+            echo "Login failed. Please check your username or email and password.";
         }
     } else {
-        echo "Login failed. Please check your username and password.";
+        echo "Login failed. Please check your username or email and password.";
     }
 }
- 
+
 $conn->close();
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,7 +52,8 @@ $conn->close();
     <link rel="stylesheet" href="style/css/pages/home.css">
     <link rel="stylesheet" href="style/css/style.css">
 </head>
-<body>    
+
+<body>
     <header>
         <div class="container">
             <div class="links">
@@ -61,8 +64,8 @@ $conn->close();
                 <form method="post">
                     <div class="fld-con">
                         <div class="fld">
-                            <label for="email">Email</label>
-                            <input type="text" name="email" required>
+                            <label for="email_or_username">Email of Gebruikersnaam</label>
+                            <input type="text" name="email_or_username" required>
                         </div>
                         <div class="fld">
                             <label for="password">Wachtwoord</label>
@@ -71,6 +74,7 @@ $conn->close();
                     </div>
                     <button type="submit">Inloggen</button>
                 </form>
+
                 <p>Geen account? <a href="./pages/register.php">Registreer nu!</a></p>
             </div>
         </div>
@@ -79,4 +83,5 @@ $conn->close();
         </div>
     </header>
 </body>
+
 </html>
