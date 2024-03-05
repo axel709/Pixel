@@ -7,7 +7,6 @@ form {
   min-height: 30vh;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 form .fld-con {
   flex-grow: 1;
