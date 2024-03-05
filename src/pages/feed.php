@@ -27,6 +27,10 @@ include_once '../conf/dbconn.php';
                     <img src="<?php echo $imageURL; ?>" width="200" />
                     <p>Gepost op: <?php echo $row["uploaded_on"] ?></p>
                     <p class="image-description">description: <?php echo $row["beschrijving"]; ?></p>
+                    <?Php
+                        $bestandsnaamZonderExtensie = pathinfo($row['file_name'], PATHINFO_FILENAME);
+                    ?>
+                    <p><?php echo $bestandsnaamZonderExtensie ?></p>
                 </div>
                 <?php
             }

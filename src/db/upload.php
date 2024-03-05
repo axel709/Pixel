@@ -10,6 +10,7 @@ $targetDir = "../db/uploads/";
 if(isset($_POST["submit"])){ 
     if(!empty($_FILES["file"]["name"])){ 
         $fileName = basename($_FILES["file"]["name"]); 
+        $fileName = "Test_" . $fileName;        
         $targetFilePath = $targetDir . $fileName; 
         $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION); 
         
