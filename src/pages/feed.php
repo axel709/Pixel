@@ -30,7 +30,7 @@ if (!isset($_SESSION['id'])) {
 
         if ($query->num_rows > 0) {
             while ($row = $query->fetch_assoc()) {
-                $imageURL = '../db/uploads/' . $row["file_name"];
+                $imageURL = '../foto upload/uploads/' . $row["file_name"];
                 ?>
                 <div class="image-container">
                     <img src="<?php echo $imageURL; ?>" width="200" />
