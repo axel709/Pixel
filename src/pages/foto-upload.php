@@ -16,14 +16,22 @@ if (!isset($_SESSION['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style/css/style.css">
 </head>
 <body>
     <nav>
-        <a href="feed.php">feed</a>
-        <a href="foto-upload.php">Foto uploaden</a>
-        <a href="user.php">User pagina</a>
-        <a href="../index.php">Log in</a>
+        <div class="wrapper con-nav">
+            <div class="logo">
+                <img src="../img/pixel-logo.png" width="50">
+                <h1>Pixel</h1>
+            </div>
+            <div class="links">
+                <a href="feed.php">Feed</a>
+                <a href="user.php">Profiel</a>
+                <a href="uitlog.php">Uitloggen</a>
+                <span class="button"><a href="foto-upload.php">Upload Foto</a></span>
+            </div>
+        </div>
     </nav>
     <div class="container">
         <div class="upfrm">
