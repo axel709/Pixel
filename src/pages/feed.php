@@ -1,7 +1,15 @@
 <?php
+
 include_once '../conf/dbconn.php';
 session_start();
+
+if (!isset($_SESSION['id'])) {
+    header("Location: ../index.php");
+    exit;
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +22,7 @@ session_start();
         <a href="feed.php">feed</a>
         <a href="foto-upload.php">Foto uploaden</a>
         <a href="user.php">User pagina</a>
+        <a href="uitlog.php">Uitloggen</a>
     </nav>
     <h1>Feed Pagina</h1>
     <?php

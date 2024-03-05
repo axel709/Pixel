@@ -9,10 +9,10 @@ error_reporting(E_ALL);
 $gebruikersnaam = $_SESSION['name'];
 $email = $_SESSION["email"];
 
-/*if (!isset($_SESSION['id'])) {
-    header("Location: login.php");
+if (!isset($_SESSION['id'])) {
+    header("Location: ../index.php");
     exit;
-}*/
+}
 
 $message = "";
 
