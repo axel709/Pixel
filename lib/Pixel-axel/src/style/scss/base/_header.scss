@@ -1,0 +1,37 @@
+@use '../abstracts/variables' as *;
+
+header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  
+
+    .container {
+        padding: 2rem;
+        min-height: 100vh;
+        background-color: #fff;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+
+        h1 {
+            color: $color-main;
+        }
+
+        .main {
+            flex-grow: 1;
+            display: grid;
+            place-items: center;
+        }
+
+        
+        .links {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+    .con-img {
+        display: grid;
+        place-items: center;
+    }
+}
