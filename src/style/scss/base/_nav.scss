@@ -19,9 +19,13 @@ nav {
             flex-direction: row;
             align-items: center;
             gap: 1em;
+            p {
+                font-family: sans-serif !important;
+                color: $color-main !important;
+            }
             h1 {
-                font-family: sans-serif;
-                color: $color-main;
+                font-family: sans-serif !important;
+                color: $color-main !important;
             }
         }
 

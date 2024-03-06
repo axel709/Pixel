@@ -7,6 +7,8 @@ error_reporting(E_ALL);
 
 $conn = mysqli_connect('localhost', 'root', '', 'foto-upload');
 
+$err = "";
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -30,10 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['email'] = $row['email'];
             header("Location: ./pages/feed.php");
         } else {
-            echo "Login failed. Please check your username or email and password.";
+            $err = "Login failed. Check uw username, mail of password.";
         }
     } else {
-        echo "Login failed. Please check your username or email and password.";
+        $err = "Login failed. Check uw username, mail of password.";
     }
 }
 
@@ -73,6 +75,9 @@ $conn->close();
                         </div>
                     </div>
                     <button type="submit">Inloggen</button>
+                    <?php if(!empty($err)){ ?>
+                        <p class="error"><?php echo $err?></p>
+                    <?php } ?>
                 </form>
 
                 <p>Geen account? <a href="./pages/register.php">Registreer nu!</a></p>
@@ -83,5 +88,4 @@ $conn->close();
         </div>
     </header>
 </body>
-
 </html>

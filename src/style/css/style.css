@@ -5,10 +5,24 @@
   background-color: #004b23;
   padding: 0.5rem;
   border-radius: 10px;
+  transition: all 100ms ease;
 }
 .button a {
   color: #fff !important;
   text-decoration: none !important;
+}
+
+button {
+  transition: all 100ms ease;
+}
+
+button:hover, .button:hover {
+  scale: 1.03;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
 }
 
 .wrapper {
@@ -75,9 +89,13 @@ nav .con-nav .logo {
   align-items: center;
   gap: 1em;
 }
+nav .con-nav .logo p {
+  font-family: sans-serif !important;
+  color: #004b23 !important;
+}
 nav .con-nav .logo h1 {
-  font-family: sans-serif;
-  color: #004b23;
+  font-family: sans-serif !important;
+  color: #004b23 !important;
 }
 nav .con-nav .links a {
   color: #004b23;

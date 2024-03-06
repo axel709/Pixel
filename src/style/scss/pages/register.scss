@@ -21,11 +21,12 @@ form {
         .fld {
             display: flex;
             flex-direction: column;
+            color: $color-main;
 
             input {
                 padding: 1rem 0 0.25rem 0;
                 border: none;
-                border-bottom: 1px solid rgba(184, 184, 184, 0.495);
+                border-bottom: 1px solid $color-main;
             }
         }
     }
@@ -37,4 +38,10 @@ form {
         color: #fff;
         border: none;
     }
+    button:hover {
+        scale: 1.03;
+        cursor: pointer;
+    }
 }
+
+p{color: $color-main;}

@@ -7,8 +7,17 @@
     background-color: $color-main;
     padding: 0.5rem;
     border-radius: 10px;
+    transition: all 100ms ease;
     a {
         color: #fff !important;
         text-decoration: none !important;
     }
+}
+
+button {
+    transition: all 100ms ease;
+}
+button:hover, .button:hover {
+    scale: 1.03;
+    cursor: pointer;
 }

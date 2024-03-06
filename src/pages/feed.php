@@ -15,9 +15,10 @@ if (!isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feed</title>
+    <title>Pixel - Actuele Foto's</title>
     <link rel="stylesheet" href="../style/css/style.css">
     <link rel="stylesheet" href="../style/css/pages/feed.css">
+    <link rel="shortcut icon" href="../img/Pixel-logo.png">
 </head>
 <body>
     <nav>

@@ -5,6 +5,8 @@ error_reporting(E_ALL);
 
 $conn = mysqli_connect('localhost', 'root', '', 'foto-upload');
 
+$err = "";
+
 if ($conn->connect_error) {
     die("Fout bij de verbinding met de database: " . $conn->connect_error);
 }
@@ -35,13 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $age = $birthdate->diff($today)->y;
 
     if ($age < 18) {
-        echo "Je moet minimaal 18 jaar oud zijn om een account te kunnen maken!";
+        $err = "Je moet minimaal 18 jaar oud zijn om een account te kunnen maken!";
     } elseif ($password != $repeatPassword) {
-        echo "Wachtwoorden komen niet overeen!";
+        $err = "Wachtwoorden komen niet overeen!";
     } elseif (strlen($password) < 8) {
-        echo "Wachtwoord moet minimaal 8 tekens lang zijn!";
+        $err = "Wachtwoord moet minimaal 8 tekens lang zijn!";
     } elseif (userExists($conn, $username, $email)) {
-        echo "Deze gebruikersnaam of e-mail is al in gebruik!";
+        $err = "Deze gebruikersnaam of e-mail is al in gebruik!";
     } else {
         $sql = "INSERT INTO login (name, wachtwoord, email, dob) VALUES ('$username', '$password', '$email', '$dob')";
 
@@ -49,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: ./feed.php");
             createUserFolder($username);
         } else {
-            echo "Fout bij registratie: " . $conn->error;
+            $err = "Fout bij registratie: " . $conn->error;
         }
     }
 }
@@ -60,11 +62,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | Pixel</title>
+    <title>Maak een account aan - Pixel</title>
     <link rel="stylesheet" href="register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../style/css/pages/register.css">
     <link rel="stylesheet" href="../style/css/style.css">
+    <link rel="shortcut icon" href="../img/Pixel-logo.png">
 </head>
 <body>
     <header>
@@ -82,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <div class="fld">
                             <label for="email">E-mail</label>
-                            <input type="email" name="email" required placeholder="Pieter@mail.com">
+                            <input type="email" name="email" required placeholder="naam@domain.com" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
                         </div>
                         <div class="fld">
                             <label for="dob">Geboortedatum</label>
@@ -98,6 +101,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
                     <button type="submit">Registreer</button>
+                    <?php if(!empty($err)){ ?>
+                        <p class="error"><?php echo $err?></p>
+                    <?php } ?>
                 </form>
                 <p>Heeft u al een account? <a href="../index.php">Log in!</a></p>
             </div>

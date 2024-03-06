@@ -61,16 +61,17 @@ $userDirectories = scanUserDirectories($userBaseDir);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Page | Pixel</title>
+    <title>Pixel - Account Dashboard</title>
     <link rel="stylesheet" href="../style/css/style.css">
     <link rel="stylesheet" href="../style/css/pages/user.css">
+    <link rel="shortcut icon" href="../img/Pixel-logo.png">
 </head>
 <body>
     <nav>
         <div class="wrapper con-nav">
             <div class="logo">
                 <img src="../img/pixel-logo.png" width="50">
-                <h1>Pixel</h1>
+                <p>Hallo, <?php echo $gebruikersnaam?></p>
             </div>
             <div class="links">
                 <a href="feed.php">Feed</a>

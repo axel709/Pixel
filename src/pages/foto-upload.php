@@ -49,20 +49,9 @@ if (!isset($_SESSION['id'])) {
                 </div>
                 <input class="button" type="submit" name="submit" value="Upload">
             </form>
-            <!-- <form method="post" enctype="multipart/form-data">
-                <div class="fld">
-                    <label>Titel:</label>
-                    <input type="text" name="description">
-                </div>
-                <div class="fld">
-                    <label>Select Image File to Upload:</label>
-                    <input type="file" name="file" style="visibility: hidden;">
-                </div>
-                <input type="submit" name="submit" value="Upload">
-                <?php if(!empty($statusMsg)){ ?>
-                    <p class="alert alert-<?php echo $status; ?>"><?php echo $statusMsg; ?></p>
-                <?php }?>
-            </form> -->
+            <?php if(!empty($statusMsg)){ ?>
+                <p class="alert alert-<?php echo $status; ?>"><?php echo $statusMsg; ?></p>
+            <?php }?>
         </div>
     </main>
 </body>
