@@ -1,0 +1,84 @@
+main {
+  padding: 1em 0;
+}
+main h1 {
+  font-family: sans-serif;
+  color: #004b23;
+}
+main .con-main {
+  min-height: 85vh;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.25em;
+  overflow: hidden;
+}
+main .con-main .item {
+  padding: 0.5em;
+  border: 1px solid #004b23;
+}
+main .con-main .side-bar {
+  grid-column: span 2;
+  grid-row: span 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  font-family: sans-serif;
+}
+main .con-main .side-bar .info-user {
+  color: #004b23;
+}
+main .con-main .side-bar img {
+  width: 200px;
+}
+main .con-main .side-bar .button {
+  padding: 0.5em 1em;
+}
+main .con-main .input-fld {
+  grid-column: span 4;
+  grid-row: span 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+main .con-main .input-fld form {
+  width: 100%;
+  display: flex;
+}
+main .con-main .input-fld form input {
+  flex-grow: 1;
+  border: 1px solid #004b23;
+  padding: 0 0.25em;
+}
+main .con-main .input-fld form .button {
+  border-radius: 0;
+  border: none;
+  padding: 1em 2em;
+}
+main .con-main .mappen {
+  grid-column: span 4;
+  grid-row: span 5;
+  min-height: 0;
+  min-width: 0;
+  overflow-y: scroll;
+}
+main .con-main .mappen .con-folders {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  text-align: center;
+}
+main .con-main .mappen .con-folders .card {
+  flex-basis: calc(25% - 1rem);
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -56,6 +56,11 @@ header .con-img {
 
 nav {
   border-bottom: 1px solid #004b23;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
 }
 nav .con-nav {
   padding: 1rem 0;

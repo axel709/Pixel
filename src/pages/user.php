@@ -63,6 +63,7 @@ $userDirectories = scanUserDirectories($userBaseDir);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Page | Pixel</title>
     <link rel="stylesheet" href="../style/css/style.css">
+    <link rel="stylesheet" href="../style/css/pages/user.css">
 </head>
 <body>
     <nav>
@@ -79,29 +80,38 @@ $userDirectories = scanUserDirectories($userBaseDir);
             </div>
         </div>
     </nav>
-    <div class="profile-container">
-        <h2>Welkom op je profielpagina</h2>
-        <p>Hier zijn je accountgegevens:</p>
-        <ul>
-            <li><strong>Gebruikersnaam:</strong> <?php echo $gebruikersnaam; ?></li>
-            <li><strong>Email:</strong> <?php echo $email; ?></li>
-        </ul>
-        <form action="" method="post">
-            <label for="directoryName">Mapnaam:</label>
-            <input type="text" id="directoryName" name="directoryName" required>
-            <button type="submit">Maak Map</button>
-        </form>
-        <p><?php echo $message; ?></p>
-        <div>
-            <h3>Jouw mappen:</h3>
-            <ul>
-                <?php foreach ($userDirectories as $directory): ?>
-                    <li><a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?dir=' . urlencode($currentDir . '/' . $directory)); ?>"><?php echo htmlspecialchars($directory); ?></a></li>
-                <?php endforeach; ?>
-            </ul>
+    <main>
+        <div class="wrapper con-main">
+            <div class="item side-bar">
+                <div>
+                    <img src="../img/account-circle.svg" alt="User picture">
+                    <div class="info-user">
+                        <p>Gebruikersnaam: <span><?php echo $gebruikersnaam; ?></span></p>
+                        <p>Email: <span><?php echo $email;?></span></p>
+                    </div>
+                </div>
+                <a href="uitlog.php" class="button">Uitloggen</a>
+            </div>
+            <div class="item input-fld">
+                <h1>Maak een nieuwe map aan</h1>
+                <form action="" method="post">
+                    <input type="text" id="directoryName" name="directoryName" required maxlength="30">
+                    <button class="button" type="submit">Voeg Toe</button>
+                </form>
+            </div>
+            <div class="item mappen">
+                <h1>Uw Mappen</h1>
+                <div class="con-folders">
+                    <?php foreach ($userDirectories as $directory): ?>
+                        <div class="card">
+                            <img src="../img/folder.png" alt="folder" width="100">
+                            <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?dir=' . urlencode($currentDir . '/' . $directory)); ?>"><?php echo htmlspecialchars($directory); ?></a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </div>
-        <a href="logout.php">Uitloggen</a>
-        <a href="index.php">Terug naar Website</a>
-    </div>
+    </main>
 </body>
 </html>
+<!-- <p><?php //echo $message; ?></p> -->
