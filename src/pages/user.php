@@ -94,7 +94,7 @@ $userDirectories = scanUserDirectories($userBaseDir);
             </div>
             <div class="item input-fld">
                 <h1>Maak een nieuwe map aan</h1>
-                <form action="" method="post">
+                <form class="search" action="" method="post">
                     <input type="text" id="directoryName" name="directoryName" required maxlength="30">
                     <button class="button" type="submit">Voeg Toe</button>
                 </form>

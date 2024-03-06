@@ -1,0 +1,19 @@
+@use '../abstracts/variables' as *;
+
+h1, p {
+    color: $color-main;
+    font-family: sans-serif;   
+}
+
+.con-main {
+    padding: 1em 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.button {
+    font-family: sans-serif;
+}

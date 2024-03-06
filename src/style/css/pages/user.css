@@ -43,16 +43,16 @@ main .con-main .input-fld {
   flex-direction: column;
   justify-content: space-around;
 }
-main .con-main .input-fld form {
+main .con-main .input-fld .search {
   width: 100%;
   display: flex;
 }
-main .con-main .input-fld form input {
+main .con-main .input-fld .search input {
   flex-grow: 1;
   border: 1px solid #004b23;
   padding: 0 0.25em;
 }
-main .con-main .input-fld form .button {
+main .con-main .input-fld .search .button {
   border-radius: 0;
   border: none;
   padding: 1em 2em;

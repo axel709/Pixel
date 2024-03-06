@@ -46,7 +46,4 @@ if(isset($_POST["submit"])){
         $statusMsg = 'Sorry, your file is too large.';
     }
 } 
- 
-
-echo $statusMsg; 
 ?>

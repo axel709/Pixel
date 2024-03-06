@@ -15,8 +15,10 @@ if (!isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload</title>
+    <title>Pixel - Voeg een foto toe!</title>
     <link rel="stylesheet" href="../style/css/style.css">
+    <link rel="stylesheet" href="../style/css/pages/upload.css">
+    <link rel="shortcut icon" href="../img/pixel-logo.png">
 </head>
 <body>
     <nav>
@@ -33,20 +35,35 @@ if (!isset($_SESSION['id'])) {
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="upfrm">
-            <?php if(!empty($statusMsg)){ ?>
-                <p class="alert alert-<?php echo $status; ?>"><?php echo $statusMsg; ?></p>
-            <?php }
-            ?>
-            <form method="post" enctype="multipart/form-data">
-                <label>Select Image File to Upload:</label>
-                <input type="file" name="file">
-                <label>Titel:</label>
-                <input type="text" name="description">
-                <input type="submit" name="submit" value="Upload">
+    <main>
+        <div class="wrapper con-main">
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="img-upload">
+                    <label for="file">Maximale grootte bestand: 20MB</label>
+                    <label for="file">Maximale resolutie: 500x500</label>
+                    <input type="file" name="file" class="button" required>
+                </div>
+                <div class="fld">
+                    <p>Titel: </p>
+                    <input type="text" name="description" placeholder="Geef uw foto een titel" required>
+                </div>
+                <input class="button" type="submit" name="submit" value="Upload">
             </form>
+            <!-- <form method="post" enctype="multipart/form-data">
+                <div class="fld">
+                    <label>Titel:</label>
+                    <input type="text" name="description">
+                </div>
+                <div class="fld">
+                    <label>Select Image File to Upload:</label>
+                    <input type="file" name="file" style="visibility: hidden;">
+                </div>
+                <input type="submit" name="submit" value="Upload">
+                <?php if(!empty($statusMsg)){ ?>
+                    <p class="alert alert-<?php echo $status; ?>"><?php echo $statusMsg; ?></p>
+                <?php }?>
+            </form> -->
         </div>
-    </div>
+    </main>
 </body>
 </html>
