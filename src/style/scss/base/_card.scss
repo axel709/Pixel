@@ -1,0 +1,30 @@
+@use '../abstracts/variables' as *;
+
+.card {
+    border: 1px solid $color-main;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 1em 0 0 0;
+    padding: 1em;
+    font-family: sans-serif;
+    color: $color-main;
+
+    .title-card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    .img-card {
+        margin: 0.5em 0;
+        .img {
+            min-height: 500px;
+            width: 500px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            border: 1px solid $color-main;
+        }
+    }
+}

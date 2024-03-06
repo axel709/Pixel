@@ -42,8 +42,8 @@ if (!isset($_SESSION['id'])) {
             <form method="post" enctype="multipart/form-data">
                 <label>Select Image File to Upload:</label>
                 <input type="file" name="file">
-                <label>Image Description:</label>
-                <textarea name="description"></textarea>
+                <label>Titel:</label>
+                <input type="text" name="description">
                 <input type="submit" name="submit" value="Upload">
             </form>
         </div>

@@ -80,3 +80,30 @@ nav .con-nav .links a {
   text-decoration: underline;
   padding: 0 0.5em;
 }
+
+.card {
+  border: 1px solid #004b23;
+  border-radius: 10px;
+  width: fit-content;
+  margin: 1em 0 0 0;
+  padding: 1em;
+  font-family: sans-serif;
+  color: #004b23;
+}
+.card .title-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
+}
+.card .img-card {
+  margin: 0.5em 0;
+}
+.card .img-card .img {
+  min-height: 500px;
+  width: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 1px solid #004b23;
+}

@@ -17,6 +17,7 @@ if (!isset($_SESSION['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feed</title>
     <link rel="stylesheet" href="../style/css/style.css">
+    <link rel="stylesheet" href="../style/css/pages/feed.css">
 </head>
 <body>
     <nav>
@@ -33,31 +34,38 @@ if (!isset($_SESSION['id'])) {
             </div>
         </div>
     </nav>
-    <h1>Feed Pagina</h1>
-    <?php
-        $query = $db->query("SELECT * FROM images, login ORDER BY uploaded_on DESC");
-
-        if ($query->num_rows > 0) {
-            while ($row = $query->fetch_assoc()) {
-                $imageURL = '../foto upload/uploads/' . $row["file_name"];
-                ?>
-                <div class="image-container">
-                    <p><?php echo $row['name']?></p>
-                    <img src="<?php echo $imageURL; ?>" width="200" />
-                    <p>Gepost op: <?php echo $row["uploaded_on"] ?></p>
-                    <p class="image-description">description: <?php echo $row["beschrijving"]; ?></p>
-                    <?Php
-                        $bestandsnaamZonderExtensie = pathinfo($row['file_name'], PATHINFO_FILENAME);
-                    ?>
-                    <p><?php echo $bestandsnaamZonderExtensie ?></p>
-                </div>
-                <?php
-            }
-        }else{
-            ?>
-            <p>No image(s) found...</p>
+    <main>
+        <div class="wrapper con-main">
             <?php
-        }
-    ?>
+                $query = $db->query("SELECT * FROM images, login ORDER BY uploaded_on DESC");
+
+                if ($query->num_rows > 0) {
+                    while ($row = $query->fetch_assoc()) {
+                        $imageURL = '../foto upload/uploads/' . $row["file_name"];
+                        ?>
+                        <div class="card">
+                            <div class="title-card">
+                                <img src="../img/account-circle.svg" width="50">
+                                <p><?php echo $row['name']?></p>
+                            </div>
+                            <div class="img-card">
+                                <div class="img" style="background-image: url('<?php echo $imageURL;?>');"></div>
+                            </div>
+                            <div class="card-body">
+                                <p class="image-description">Titel: <?php echo $row["beschrijving"]; ?></p>
+                                <p>Gepost op: <?php echo $row["uploaded_on"] ?></p>
+                            </div>
+                        </div>
+            <?php
+                    }
+                }else{
+            ?>
+                    <p>Geen berichten gevonden!</p>
+            <?php
+                }
+            ?>
+        </div>
+    </main> 
+
 </body>
 </html>
