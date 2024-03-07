@@ -33,4 +33,17 @@ header {
         display: grid;
         place-items: center;
     }
+    @media (max-width: 1000px) {
+        .con-img {
+            display: none;
+        }
+    }
+}
+@media(max-width: 1000px) {
+    header {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    h1 {
+        text-align: center;
+    }
 }

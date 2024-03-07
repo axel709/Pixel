@@ -67,13 +67,26 @@ header .con-img {
   display: grid;
   place-items: center;
 }
+@media (max-width: 1000px) {
+  header .con-img {
+    display: none;
+  }
+}
 
+@media (max-width: 1000px) {
+  header {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  h1 {
+    text-align: center;
+  }
+}
 nav {
   border-bottom: 1px solid #004b23;
   position: sticky;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   background-color: #fff;
 }
 nav .con-nav {
