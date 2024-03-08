@@ -89,4 +89,9 @@ main {
             }
         }
     }
+    @media (max-width: 650px) {
+        .con-main {
+            display: block;
+        }
+    }
 }

@@ -24,9 +24,13 @@
   font-family: sans-serif;
   color: #004b23;
 }
+.con-main form .img-upload input {
+  max-width: 100%;
+}
 .con-main form .fld {
   display: flex;
   flex-direction: column;
+  width: 500px;
 }
 .con-main form .fld p {
   color: #004b23;
@@ -36,12 +40,18 @@
   padding: 0.5em;
   border-color: #004b23;
 }
+.con-main form .upload {
+  width: 500px;
+}
 @media (max-width: 500px) {
   .con-main form .fld {
-    width: 100vw;
+    width: 250px;
   }
   .con-main form .img-upload {
     width: 250px;
     height: 250px;
+  }
+  .con-main form .button {
+    width: 250px;
   }
 }

@@ -59,7 +59,7 @@ if (!isset($_SESSION['id'])) {
                     <p>Titel: </p>
                     <input type="text" name="description" placeholder="Geef uw foto een titel" required>
                 </div>
-                <input class="button" type="submit" name="submit" value="Upload">
+                <input class="button upload" type="submit" name="submit" value="Upload">
             </form>
             <?php if(!empty($statusMsg)){ ?>
                 <p class="alert alert-<?php echo $status; ?>"><?php echo $statusMsg; ?></p>
