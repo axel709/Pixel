@@ -217,9 +217,15 @@ nav .mobile-links .con-mobile a {
 }
 .card .img-card .img {
   min-height: 500px;
-  width: 500px;
+  min-width: 500px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   border: 1px solid #004b23;
+}
+@media (max-width: 500px) {
+  .card .img-card .img {
+    min-height: 250px;
+    min-width: 250px;
+  }
 }

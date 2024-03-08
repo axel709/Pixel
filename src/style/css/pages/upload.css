@@ -8,7 +8,9 @@
 .con-main form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1em;
+  max-width: max-content;
 }
 .con-main form .img-upload {
   width: 500px;
@@ -33,4 +35,13 @@
 .con-main form .fld input[type=text] {
   padding: 0.5em;
   border-color: #004b23;
+}
+@media (max-width: 500px) {
+  .con-main form .fld {
+    width: 100vw;
+  }
+  .con-main form .img-upload {
+    width: 250px;
+    height: 250px;
+  }
 }

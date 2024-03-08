@@ -2,7 +2,6 @@
 
 .card {
     border: 1px solid $color-main;
-    // border-radius: 10px;
     width: fit-content;
     margin: 1em 0 0 0;
     padding: 1em;
@@ -20,11 +19,19 @@
         margin: 0.5em 0;
         .img {
             min-height: 500px;
-            width: 500px;
+            min-width: 500px;
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
             border: 1px solid $color-main;
+        }
+    }
+    @media (max-width: 500px) {
+        .img-card {
+            .img {
+                min-height: 250px;
+                min-width: 250px;
+            }
         }
     }
 }
