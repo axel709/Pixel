@@ -19,15 +19,27 @@ if (!isset($_SESSION['id'])) {
     <link rel="stylesheet" href="../style/css/style.css">
     <link rel="stylesheet" href="../style/css/pages/feed.css">
     <link rel="shortcut icon" href="../img/Pixel-logo.png">
+    <script src="../scripts/nav.js" defer></script>
 </head>
 <body>
-    <nav>
+    <nav class="closed">
         <div class="wrapper con-nav">
             <div class="logo">
                 <img src="../img/pixel-logo.png" width="50">
                 <h1>Pixel</h1>
             </div>
             <div class="links">
+                <a href="feed.php">Feed</a>
+                <a href="user.php">Profiel</a>
+                <a href="uitlog.php">Uitloggen</a>
+                <span class="button"><a href="foto-upload.php">Upload Foto</a></span>
+            </div>
+            <div class="mobile-nav closed-mobile" onclick="hamburger()">
+                <div class="hamburger"></div>
+            </div>
+        </div>
+        <div id="mobile" class="mobile-links" style="display: none;">
+            <div class="wrapper con-mobile">
                 <a href="feed.php">Feed</a>
                 <a href="user.php">Profiel</a>
                 <a href="uitlog.php">Uitloggen</a>
@@ -67,6 +79,5 @@ if (!isset($_SESSION['id'])) {
             ?>
         </div>
     </main> 
-
 </body>
 </html>
